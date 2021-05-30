@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body {
+        background-color: #ffffff;
+        font-family: 'Ubuntu', sans-serif;
+    }
+    input[type=radio] {
+        border: 0px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .registerbtn {
+        background-color: #FFFFFF;
+        border-radius: 15px 15px 15px 15px;
+        color: black;
+        padding: 16px 20px;
+        margin: 8px 0;
+        border-color: black;
+        cursor: pointer;
+        width: 50%;
+        opacity: 0.9;
+    }
+    .main {
+        background-color: #FFFFFF;
+        width: 1500px;
+        height: auto;
+        margin: 20px auto 20px auto;
+        border-radius: 1.5em;
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    }
+
+    .sign {
+        padding-top: 40px;
+        color: #8C55AA;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: bold;
+        font-size: 23px;
+    }
+
+    .un {
+        width: 76%;
+        color: rgb(38, 50, 56);
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 1px;
+        background: rgba(136, 126, 126, 0.04);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        outline: none;
+        box-sizing: border-box;
+        border: 2px solid rgba(0, 0, 0, 0.02);
+        margin-bottom: 50px;
+        text-align: center;
+        margin-bottom: 27px;
+        font-family: 'Ubuntu', sans-serif;
+    }
+
+    form.form1 {
+        padding-top: 40px;
+    }
+
+    .pass {
+        width: 76%;
+        color: rgb(38, 50, 56);
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 1px;
+        background: rgba(136, 126, 126, 0.04);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        outline: none;
+        box-sizing: border-box;
+        border: 2px solid rgba(0, 0, 0, 0.02);
+        margin-bottom: 50px;
+        text-align: center;
+        margin-bottom: 27px;
+        font-family: 'Ubuntu', sans-serif;
+    }
+
+
+    .un:focus, .pass:focus {
+        border: 2px solid rgba(0, 0, 0, 0.18) !important;
+
+    }
+
+    .submit {
+        cursor: pointer;
+        border-radius: 5em;
+        border-color:black;
+        color: #fff;
+        background: white;
+        border-color: #000000;
+        border:5px;
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 13px;
+        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+    }
+
+    .forgot {
+        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+        color: #ffffff;
+        padding-top: 15px;
+    }
+
+    a {
+        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+        color: #E1BEE7;
+        text-decoration: none
+    }
+
+    @media (max-width: 600px) {
+        .main {
+            border-radius: 0px;
+        }
+
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Questionnaire</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400|Ubuntu" rel="stylesheet">
+    <!-- CSS Stylesheets-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <!-- Font Awesome-->
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script>
+    {% include 'profiles/css/homepage.css' %}
+</head>
+<body>
+<section class="colored-section" id="title">
+
+    <div class="container-fluid">
+
+        <!-- Nav Bar -->
+        {% include 'profiles/navbar.html' %}
+
+    </div>
+</section>
+
+<div class="main">
+    <form method="POST">{% csrf_token %}
+        <br>
+        <div class="row">
+            <label style="text-align: left; padding-left: 50px; font-weight: bolder; font-size: 30px;">
+                <p>{{question1}}</p>
+            </label>
+        </div>
+        <div class="form-group">
+            <div class="radio">
+                <label style="font-size: 20px; padding: 1% 10% 1%;">
+                    <input type="radio" name="question1" value="{{ q1o1 }}" required="required" />
+                    {{ q1o1 }}
+                </label> &nbsp;
+                <label style="font-size: 20px; padding: 1% 10% 1%;">
+                    <input type="radio" name="question1" value="{{ q1o2 }}" required="required" />
+                    {{ q1o2 }}
+                </label> &nbsp;
+                <label style="font-size: 20px; padding: 1% 10% 1%;">
+                    <input type="radio" name="question1" value="{{ q1o3 }}" required="required" />
+                    {{ q1o3 }}
+                </label> &nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <label style="text-align: left; padding-left: 50px; font-weight: bolder; font-size: 30px;">
+                <p>{{question2}}</p>
+            </label>
+        </div>
+        <div class="form-group">
+            <div class="radio">
+                <label style="font-size: 20px; padding: 1% 10% 1%;">
+                    <input type="radio" name="question2" value="{{ q2o1 }}" required="required" />
+                    {{ q2o1 }}
+                </label> &nbsp;
+                <label style="font-size: 20px; padding: 1% 10% 1%;">
+                    <input type="radio" name="question2" value="{{ q2o2 }}" required="required" />
+                    {{ q2o2 }}
+                </label> &nbsp;
+                <label style="font-size: 20px; padding: 1% 10% 1%;">
+                    <input type="radio" name="question2" value="{{ q2o3 }}" required="required" />
+                    {{ q3o3 }}
+                </label> &nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <label style="text-align: left; padding-left: 50px; font-weight: bolder; font-size: 30px;">
+                <p>{{question3}}</p>
+            </label>
+        </div>
+        <div class="form-group">
+            <div class="radio">
+                <label style="font-size: 20px; padding: 1% 10% 1%;">
+                    <input type="radio" name="question3" value="{{ q3o1 }}" required="required" />
+                    {{ q3o1 }}
+                </label> &nbsp;
+                <label style="font-size: 20px; padding: 1% 10% 1%;">
+                    <input type="radio" name="question3" value="{{ q3o2 }}">
+                    {{ q3o2 }}
+                </label> &nbsp;
+                <label style="font-size: 20px; padding: 1% 10% 1%;">
+                    <input type="radio" name="question3" value="{{ q3o3 }}">
+                    {{ q3o3 }}
+                </label> &nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <label style="text-align: left; padding-left: 50px; font-weight: bolder; font-size: 30px;">
+                <p>{{question4}}</p>
+            </label>
+        </div>
+        <div class="form-group">
+            <div class="radio">
+                <label style="font-size: 20px; padding: 1% 10% 1%;">
+                    <input type="radio" name="question4" value="{{ q4o1 }}">
+                    {{ q4o1 }}
+                </label> &nbsp;
+                <label style="font-size: 20px; padding: 1% 10% 1%;">
+                    <input type="radio" name="question4" value="{{ q4o2 }}">
+                    {{ q4o2 }}
+                </label> &nbsp;
+                <label style="font-size: 20px; padding: 1% 10% 1%;">
+                    <input type="radio" name="question4" value="{{ q4o3 }}">
+                    {{ q4o3 }}
+                </label> &nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <label style="text-align: left; padding-left: 50px; font-weight: bolder; font-size: 30px;">
+                <p>{{question5}}</p>
+            </label>
+        </div>
+        <div class="form-group">
+            <div class="radio">
+                <label style="font-size: 20px; padding: 1% 10% 1%;">
+                    <input type="radio" name="question5" value="{{ q5o1 }}">
+                    {{ q5o1 }}
+                </label> &nbsp;
+                <label style="font-size: 20px; padding: 1% 10% 1%;">
+                    <input type="radio" name="question5" value="{{ q5o2 }}">
+                    {{ q5o2 }}
+                </label> &nbsp;
+                <label style="font-size: 20px; padding: 1% 10% 1%;">
+                    <input type="radio" name="question5" value="{{ q5o3 }}">
+                    {{ q5o3 }}
+                </label> &nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <label style="text-align: left; padding-left: 50px; font-weight: bolder; font-size: 30px;">
+                <p>{{question6}}</p>
+            </label>
+        </div>
+        <div class="form-group">
+            <div class="radio">
+                <label style="font-size: 20px; padding: 1% 10% 1%;">
+                    <input type="radio" name="question6" value="{{ q6o1 }}">
+                    {{ q6o1 }}
+                </label> &nbsp;
+                <label style="font-size: 20px; padding: 1% 10% 1%;">
+                    <input type="radio" name="question6" value="{{ q6o2 }}">
+                    {{ q6o2 }}
+                </label> &nbsp;
+                <label style="font-size: 20px; padding: 1% 10% 1%;">
+                    <input type="radio" name="question6" value="{{ q6o3 }}">
+                    {{ q6o3 }}
+                </label> &nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <label style="text-align: left; padding-left: 50px; font-weight: bolder; font-size: 30px;">
+                <p>{{question7}}</p>
+            </label>
+        </div>
+        <div class="form-group">
+            <div class="radio">
+                <label style="font-size: 20px; padding: 1% 10% 1%;">
+                    <input type="radio" name="question7" value="{{ q7o1 }}">
+                    {{ q7o1 }}
+                </label> &nbsp;
+                <label style="font-size: 20px; padding: 1% 10% 1%;">
+                    <input type="radio" name="question7" value="{{ q7o2 }}">
+                    {{ q7o2 }}
+                </label> &nbsp;
+                <label style="font-size: 20px; padding: 1% 10% 1%;">
+                    <input type="radio" name="question7" value="{{ q7o3 }}">
+                    {{ q7o3 }}
+                </label> &nbsp;
+            </div>
+        </div>
+        <button class="registerbtn" type="submit" style="font-weight: bolder;font-size: larger ">Submit</button>
+        <br><br>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+{% load static %}
+<style>
+    .material-icons.md-48 { font-size: 40px; }
+</style>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<nav class="navbar navbar-expand-lg navbar-dark justify-content-between">
+    <a class="navbar-brand" style="color:black"> <img src="{% static '/beelove_pics/logo.png' %}"/></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon bg-dark" style="border-color: #0b1526"></span>
+    </button>
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        {% if request.user.is_authenticated %}
+        <form class="search-bar justify-content-end">
+            <a class="nav-link" style="color:black; font-size: 30px"  href="{% url 'home'%}">HomePage<span class="material-icons md-48">house</span></a>
+        </form>
+        {% if request.user.is_staff %}
+        <div class="navbar-nav ml-auto">
+            <p class="nav-item" ><a class="nav-link" style="color:black;font-weight: bold;font-size: 30px"  href="{% url 'reports' %}">Reports</a></p>
+        </div>
+        <div class="navbar-nav ml-auto">
+            <p class="nav-item" ><a class="nav-link" style="color:black;font-weight: bold;font-size: 30px"  href="{% url 'createque' %}">Create Questions</a></p>
+        </div>
+        {% else %}
+        <div class="navbar-nav ml-auto">
+            <p class="nav-item" ><a class="nav-link" style="color:black;font-weight: bold;font-size: 30px"  href="">Client</a></p>
+        </div>
+        {% endif %}
+
+
+        <div class="dropdown dropleft-reverse show p-2" style="float:right">
+            <div class="d-flex flex-row"  >
+                <!--chat notification-->
+                <div class="btn-group dropleft">
+                    <div class="d-flex notifications-container rounded-circle align-items-center mr-3 " id="id_chat_notification_dropdown_toggle" data-toggle="dropdown">
+                        <span id="id_chat_notification_count" class="notify-badge"></span>
+                        <span class="d-flex material-icons notifications-material-icon md-48 m-auto align-items-center" style="color: black">chat</span>
+                        <div class="dropdown-menu scrollable-menu " aria-labelledby="id_chat_notification_dropdown_toggle " id="id_chat_notification_container"></div>
+                    </div>
+                </div>
+                <!--general notification-->
+                <div class="btn-group dropleft md-48">
+                    <div class="d-flex notifications-container rounded-circle align-items-center mr-3 " id="id_notification_dropdown_toggle" data-toggle="dropdown">
+                        <span id="id_general_notification_count" class="notify-badge"></span>
+                        <span class="d-flex material-icons notifications-material-icon md-48 m-auto align-items-center" style="color: black">notifications</span>
+                        <div class="dropdown-menu scrollable-menu " aria-labelledby="id_notification_dropdown_toggle" id="id_general_notification_container"></div>
+                    </div>
+                </div>
+
+                <!-- account-->
+                <div class="btn-group dropleft" >
+                    <img class="account-image rounded-circle m-auto d-block align-items-center dropdown-toggle" id="id_profile_links" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                         src="{{request.user.profile_image.url}}" alt="Beelove logo" height="80" width="80"/>
+                    <div class="dropdown-menu" aria-labelledby="id_profile_links">
+                        <a class="dropdown-item" style="font-weight: bold;font-size: 30px;" href="{% url 'Profile' userId=request.user.userId %}">Profile</a>
+                        <a class="dropdown-item" style="font-weight: bold;font-size: 30px;" href="{% url 'logout'%}">Log out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% else %}
+        <ul class="navbar-nav ml-lg-auto">
+            <li class="nav-item"  >
+                <a class="nav-link" style="color:black; font-size: 30px"  href="{% url 'home'%}">HomePage<span class="material-icons md-48">house</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color:black; font-size: 30px" href="{% url 'signup'%}">Register<span class="material-icons md-48">how_to_reg</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color:black; font-size: 30px" href="{% url 'login'%}">Log in<span class="material-icons md-48">login</span></a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" style="color:black; font-size: 30px" href="{% url 'contactus'%}">Contact <span class="material-icons md-48">contact_support</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color:black; font-size: 30px" href="{% url 'price'%}">Pricing<span class="material-icons md-48">price_check</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color:black; font-size: 30px" href="{% url 'aboutus'%}">About Us</a>
+            </li>
+        </ul>
+        {% endif %}
+    </div>
+</nav>

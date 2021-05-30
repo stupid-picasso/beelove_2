@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BEELOVE HOME</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400|Ubuntu" rel="stylesheet">
+  <!-- CSS Stylesheets-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <!-- Font Awesome-->
+  <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script>
+
+  {% include 'profiles/css/homepage.css' %}
+
+</head>
+
+<body>
+
+<section class="colored-section" id="title">
+
+  <div class="container-fluid">
+
+    <!-- Nav Bar -->
+    {% include 'profiles/navbar.html' %}
+
+  </div>
+</section>
+<section class="white-section" id="features">
+
+  <div class="container-fluid" style="padding: 5% 16% 1%;" align="center">
+
+    <div class="row" >
+      <div class="feature-box col-lg-4 shadow p-3 mb-5 bg-white rounded">
+        <h2>Welcome to Beelove<p class="icon fas fa-heart fa-4x"></p> Where You Meet new and interesting people</h2>
+        <button type="button" class="btn btn-dark btn-lg download-button"><i class="fab fa-apple"></i> Download</button>
+        <button type="button" class="btn btn-dark btn-lg download-button"><i class="fab fa-google-play"></i> Download</button>
+      </div>
+      <div class="feature-box col-sm"></div>
+      {% if request.user.is_authenticated %}
+      <div class="card-body shadow p-3 mb-5 bg-white rounded" style="size: auto;font-style: italic" >
+        <h2>Meet your Possible Match</h2>
+        <form action="#" method="get">
+          <fieldset>
+            <div class="search_row">
+              <div class="search_column_2">
+                <label style="font-size: 30px">Seeking a___</label>
+                <select class="gender" style="font-size: 20px">
+                  <option>Female</option>
+                  <option>Male</option>
+                </select>
+              </div>
+            </div>
+            <div class="search_row">
+              <div class="search_column_1">
+                <label style="font-size: 30px">City__</label>
+                <select class="City" style="font-size: 20px">
+                  <option value="New Haven" style="font-size: 25px" >New Haven</option>
+                  <option value="New York" style="font-size: 25px">New York</option>
+                </select>
+              </div>
+            </div>
+            <div class="search_row">
+              <button class="btn btn-dark btn-lg download-button justify-content-center" type="submit">Let's Search</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      {% else %}
+      <div class="card-body shadow p-4 mb-5 bg-white rounded">
+        <h3>Click Here to Register </h3>
+        <button type="button" class="btn btn-dark btn-lg download-button"><a style="color:white" href="{% url 'signup'%}">Register<span class="material-icons">how_to_reg</span></a></button>
+        <h3>Click Here to Log In </h3>
+        <button type="button" class="btn btn-dark btn-lg download-button" ><a style="color:white" href="{% url 'login'%}">Log in<span class="material-icons">login</span></a></button>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+
+<!-- Footer -->
+
+
+
+</body>
+
+</html>

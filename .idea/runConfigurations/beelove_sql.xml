@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="beelove.sql" type="DatabaseScript" editBeforeRun="true" singleton="false">
+    <script-file value="$APPLICATION_CONFIG_DIR$/consoles/db/f997e12e-9c58-446e-b560-1b2f9debe815/console_1.sql" />
+    <script-mode>FILE</script-mode>
+    <data-source id="f997e12e-9c58-446e-b560-1b2f9debe815" namespace="schema/&quot;beelove&quot;" />
+    <method v="2" />
+  </configuration>
+</component>

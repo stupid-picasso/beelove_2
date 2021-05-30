@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>REGISTER HERE!</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400|Ubuntu" rel="stylesheet">
+  <!-- CSS Stylesheets-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+  <!-- Font Awesome-->
+  <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script>
+  {% include 'profiles/css/homepage.css' %}
+</head>
+
+<body>
+<section class="colored-section" id="title">
+
+  <div class="container-fluid">
+
+    <!-- Nav Bar -->
+    {% include 'profiles/navbar.html' %}
+
+  </div>
+</section>
+{% include 'profiles/css/signup.css' %}
+
+<!-- multistep form -->
+<form id="msform" method="post">{% csrf_token %}
+
+  <!-- fieldsets -->
+  <fieldset>
+    <h1 class="fs-title">Create your account</h1>
+    <input type="text" name="FirstName" id="FirstName" placeholder="FirstName" style="font-size: 20px;" required/>
+    <input type="text" name="LastName" id="LastName" placeholder="LastName" style="font-size: 20px;"required/>
+    <div type="text" style="font-size: 20px; padding-bottom: 1px">
+      <label for="sex">Gender:</label>
+      <select Name="sex" id="sex" style="font-size: 20px">
+        <option value="male" style="font-size: 20px" >Male</option>
+        <option value="female" style="font-size: 20px">Female</option>
+      </select>
+    </div>
+    <span style="font-size: 20px">Birth date:</span>
+    <input type="Date" name= "DOB" style="font-size: 20px;"/>
+
+    <input type="email" name="email" id="inputEmail" placeholder="Email" style="font-size: 20px;" required/>
+    <input type="text" name="username" id="inputUsername"  placeholder="Username" style="font-size: 20px;" required/>
+    <input type="password" name="password1" id="inputPassword1"  placeholder="Password" style="font-size: 20px;" required/>
+    <input type="password" name="password2" id="inputPassword2" placeholder="Confirm Password" style="font-size: 20px;" required/>
+    {% for field in registration_form %}
+    <p>
+      {% for error in field.errors %}
+    <p style="color: red">{{ error }}</p>
+    {% endfor %}
+    </p>
+    {% endfor %}
+    {% if registration_form.non_field_errors %}
+    <div style="color: red">
+      <p>{{registration_form.non_field_errors}}</p>
+    </div>
+
+    {% endif %}
+
+    <button class="registerbtn" type="submit">Register</button>
+    <!--    <input type="button" style="border-color: #000000" name="next" class="next action-button" value="Next" />-->
+  </fieldset>
+</form>
+
+</body>
+</html>

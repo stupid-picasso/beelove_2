@@ -1,0 +1,192 @@
+{% load render_table from django_tables2 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body {
+        background-color: #ffffff;
+        font-family: 'Ubuntu', sans-serif;
+    }
+    input[type=radio] {
+        border: 0px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .registerbtn {
+        background-color: #FFFFFF;
+        border-radius: 15px 15px 15px 15px;
+        color: black;
+        padding: 16px 20px;
+        margin: 8px 0;
+        border-color: black;
+        cursor: pointer;
+        width: 50%;
+        opacity: 0.9;
+    }
+    .main {
+        background-color: #FFFFFF;
+        width: 1000px;
+        height: auto;
+        margin: 20px auto 20px auto;
+        border-radius: 1.5em;
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    }
+
+    .sign {
+        padding-top: 40px;
+        color: #8C55AA;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: bold;
+        font-size: 23px;
+    }
+
+    .un {
+        width: 76%;
+        color: rgb(38, 50, 56);
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 1px;
+        background: rgba(136, 126, 126, 0.04);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        outline: none;
+        box-sizing: border-box;
+        border: 2px solid rgba(0, 0, 0, 0.02);
+        margin-bottom: 50px;
+        text-align: center;
+        margin-bottom: 27px;
+        font-family: 'Ubuntu', sans-serif;
+    }
+
+    form.form1 {
+        padding-top: 40px;
+    }
+
+    .pass {
+        width: 76%;
+        color: rgb(38, 50, 56);
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 1px;
+        background: rgba(136, 126, 126, 0.04);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        outline: none;
+        box-sizing: border-box;
+        border: 2px solid rgba(0, 0, 0, 0.02);
+        margin-bottom: 50px;
+        text-align: center;
+        margin-bottom: 27px;
+        font-family: 'Ubuntu', sans-serif;
+    }
+
+
+    .un:focus, .pass:focus {
+        border: 2px solid rgba(0, 0, 0, 0.18) !important;
+
+    }
+
+    .submit {
+        cursor: pointer;
+        border-radius: 5em;
+        border-color:black;
+        color: #fff;
+        background: white;
+        border-color: #000000;
+        border:5px;
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 13px;
+        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+    }
+
+    .forgot {
+        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+        color: #ffffff;
+        padding-top: 15px;
+    }
+
+    a {
+        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+        color: #E1BEE7;
+        text-decoration: none
+    }
+
+    @media (max-width: 600px) {
+        .main {
+            border-radius: 0px;
+        }
+
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Questionnaire</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400|Ubuntu" rel="stylesheet">
+    <!-- CSS Stylesheets-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <!-- Font Awesome-->
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script>
+    {% include 'profiles/css/homepage.css' %}
+</head>
+<body>
+<section class="colored-section" id="title">
+
+    <div class="container-fluid">
+
+        <!-- Nav Bar -->
+        {% include 'profiles/navbar.html' %}
+
+    </div>
+</section>
+<div class="panel-body">
+    <div class="row">
+        {% for que in Ques %}
+        <div class="col-lg-12" >
+            <h2>{{ que.question }}</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <hr />
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="poll" value="option1" >
+                            {{ que.option_one }}
+                        </label> &nbsp;
+                        <label>
+                            <input type="radio" name="poll" value="option2">
+                            {{ que.option_two }}
+                        </label> &nbsp;
+                        <label>
+                            <input type="radio" name="poll" value="option3">
+                            {{ que.option_three }}
+                        </label> &nbsp;
+                    </div>
+                </div>
+
+                <hr />
+                {% endfor %}
+                <button type="submit" class="btn btn-info">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<style type="text/css">
+  .profile-image{
+    max-height: 100px;
+    max-width: 100px;
+  }
+  .profile-image{
+    border-radius: 12px;
+  }
+  .card{
+    border-radius: 12px;
+  }
+  .dropdown-toggle::after {
+    content: none;
+  }
+  .profile-link{
+    color: #000;
+  }
+  .material-icons{
+    font-size: 30px;
+  }
+  .material-icons:hover{
+    cursor: pointer;
+  }
+  .confirm-friend-request{
+    color: green;
+  }
+  .confirm-friend-request:hover {
+    opacity: 0.3;
+  }
+  .decline-friend-request:hover {
+    opacity: 0.3;
+  }
+  .decline-friend-request{
+    color: red;
+  }
+  head{
+    font-family: "Segoe UI";
+    font-weight: 380;
+  }
+  footer{
+    font-family: "Segoe UI";
+    font-weight: 380;
+  }
+  body{
+    background-color: #f2f2f2;
+    font-family: "Segoe UI";
+    font-weight: 380;
+  }
+
+  :root{
+    --main-background-color: #f2f2f2;
+    --dark-background-color: #a2a2a2;
+    --secondary-text-color: #808080;
+    --light-primary-text-color: #0080ff;
+  }
+
+</style>
+</style>
+<head>
+  <meta charset="UTF-8">
+  <title>Match Requests</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400|Ubuntu" rel="stylesheet">
+  <!-- CSS Stylesheets-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+</head>
+<body>
+<section class="colored-section" id="title">
+
+  <div class="container-fluid">
+
+    <!-- Nav Bar -->
+    {% include 'profiles/navbar.html' %}
+
+  </div>
+</section>
+
+<div class="container">
+  <div class="card p-2">
+    {% if match_requests %}
+    <div class="d-flex flex-row flex-wrap">
+      {% for request in match_requests %}
+      <div class="card flex-row flex-grow-1 p-2 mx-2 my-2 align-items-center">
+        <a class="profile-link" href="{% url 'Profile' userId=request.sender.userId %}">
+          <div class="card-image m-2">
+            <img class="img-fluid profile-image" src="{{request.sender.profile_image.url}}" alt="">
+          </div>
+        </a>
+        <a class="profile-link" href="{% url 'Profile' userId=request.sender.userId %}">
+          <div class="card-center px-2">
+            <h4 class="card-title">{{request.sender.FirstName}} {{request.sender.LastName}}</h4>
+          </div>
+        </a>
+        <div class="d-flex flex-row card-right flex-grow-1 justify-content-end mx-2">
+          <span id="id_cancel_{{request.sender.id}}" class="decline-friend-request material-icons p-1" onclick='triggerDeclineFriendRequest("{{request.id}}")'>cancel</span>
+          <span id="id_confirm_{{request.sender.id}}" class="confirm-friend-request material-icons p-1" onclick='triggerAcceptMatchRequest("{{request.id}}")'>check</span>
+        </div>
+      </div>
+      {% if forloop.counter|divisibleby:2 %}
+    </div><div class="d-flex flex-row flex-wrap">
+    {% endif %}
+
+    {% endfor %}
+
+    {% else %} <!-- If no friends -->
+    <div class="d-flex flex-row flex-grow-1 justify-content-center align-items-center p-4">
+      <p>No results</p>
+    </div>
+    {% endif %}
+  </div>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+  function onMatchRequestAccepted(){
+    // location.reload();
+  }
+
+  function onFriendRequestDeclined(){
+    location.reload();
+  }
+
+  function triggerAcceptMatchRequest(match_request_id){
+    acceptMatchRequest(match_request_id, onMatchRequestAccepted)
+  }
+
+  function triggerDeclineFriendRequest(friend_request_id){
+    declineFriendRequest(friend_request_id, onFriendRequestDeclined)
+  }
+</script>
+{% include 'matchsystem/snippets/accept_match_request.html' %}
+
+
+
+</body>
+</html>
